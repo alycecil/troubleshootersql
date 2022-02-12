@@ -4,13 +4,13 @@ Troubleshooter uses sqlite as its game state engine and simply creates a couple 
 
 These scripts are for offline mode of the game and only for the file `game.sav`, they do not update the history `log.sav.`
 
-#Usage
-To use these scripts, download and install sqlite
-Open the `game.sav` file
-Go to the `Execute SQL` tab
-copy and paste the sql scripts you want from github, likely just `main.sql`
-hit the triangle play button without the line.
-press `Write Changes`
+# Usage
+- To use these scripts, download and install sqlite
+- Open the `game.sav` file
+- Go to the `Execute SQL` tab
+- copy and paste the sql scripts you want from github, likely just `main.sql`
+- hit the triangle play button without the line.
+- press `Write Changes`
 
 # Version of SQLite Used:
 
