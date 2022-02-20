@@ -1,2 +1,5 @@
 
 *.bak
+/sqlitetool/target/
+/.idea/
+*.iml
