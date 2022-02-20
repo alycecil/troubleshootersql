@@ -1,4 +1,4 @@
-INSERT or ignore INTO"main"."companyPropertyMaster" ("masterName") VALUES ('Mastery/<class name="MakeConcoction" Base_Title="화합물 만들기" Edible="false" Life="false" IsEnableESP="false" Category="Ability" Type="Alchemist" MaxLv="1" Cost="3" MasterRate="25" FlavorText="실패란 성공의 과정이다." ExtractItem="Statement_Mastery" UseSubMasteryTooltip="false" UseSubJobMasteryTooltip="false" UseBuffTooltip="true" Mastery="None" Ability="MakeConcoction" ChainAbility="None" ModifyAbility="None" ModifyAbilityType="None" ModifyAbilityOrder="None" Range="None" SubRange1="None" SubRange2="None" TurnPlayType="None" SubType="None" Buff="MakeConcoction" SubBuff="UnstableConcoction" ThirdBuff="None" ForthBuff="None" ApplyAmountType="None" ApplyAmountType2="None" ApplyAmountType3="None" ApplyAmountType4="None" ApplyAmountType5="None" CounterMeleeAttack="false" CounterShooting="false" ReactionMeleeAttack="false" ReactionShooting="false"/>/Amount');
+
 INSERT or ignore INTO"main"."companyPropertyMaster" ("masterName") VALUES ('Mastery/SupportExpert/Amount');
 INSERT or ignore INTO"main"."companyPropertyMaster" ("masterName") VALUES ('Mastery/EnhancedPotion/Amount');
 INSERT or ignore INTO"main"."companyPropertyMaster" ("masterName") VALUES ('Mastery/MentalBreak/Amount');
@@ -735,11 +735,11 @@ INSERT or ignore INTO"main"."companyPropertyMaster" ("masterName") VALUES ('Mast
 INSERT or ignore INTO"main"."companyPropertyMaster" ("masterName") VALUES ('Mastery/ExtremeSpirit/Amount');
 INSERT or ignore INTO"main"."companyPropertyMaster" ("masterName") VALUES ('Mastery/AcuteSpirit/Amount');
 
-
 INSERT INTO "main"."companyProperty" ("companyID", "masterIndex", "cpValue")
-SELECT '1', companyPropertyMaster.masterIndex, '9999'
+SELECT company.companyID, companyPropertyMaster.masterIndex, '9999'
 FROM companyPropertyMaster
-left join companyProperty on companyPropertyMaster.masterIndex = companyProperty.masterIndex
+join company on company.companyID = companyProperty.companyID
+left join companyProperty on companyPropertyMaster.masterIndex = companyProperty.masterIndex and company.companyID = companyProperty.companyID
 where companyProperty.masterIndex is null
 and companyPropertyMaster.masterName like '%Amount' 
 ;
