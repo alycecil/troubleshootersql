@@ -738,8 +738,10 @@ INSERT or ignore INTO"main"."companyPropertyMaster" ("masterName") VALUES ('Mast
 INSERT INTO "main"."companyProperty" ("companyID", "masterIndex", "cpValue")
 SELECT company.companyID, companyPropertyMaster.masterIndex, '9999'
 FROM companyPropertyMaster
-join company on company.companyID = companyProperty.companyID
-left join companyProperty on companyPropertyMaster.masterIndex = companyProperty.masterIndex and company.companyID = companyProperty.companyID
-where companyProperty.masterIndex is null
-and companyPropertyMaster.masterName like '%Amount' 
+left join company on company.companyID = 3
+left join companyProperty 
+on companyPropertyMaster.masterIndex = companyProperty.masterIndex 
+and company.companyID = companyProperty.companyID
+where companyPropertyMaster.masterName like '%Amount' 
+and companyProperty.masterIndex is null
 ;
