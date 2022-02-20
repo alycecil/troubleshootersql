@@ -15,10 +15,6 @@ where masterIndex in (
 and propValue > 2
 
 ;
-
-
-
-;
 update itemProperty
 set propValue = 500
 WHERE
@@ -83,6 +79,53 @@ and whichProp.propValue IN (
 "IncreaseHitRate_Fire",
 "IncreaseHitRate_Ice",
 "IncreaseHitRate_Wind"
+)
+order by itemProperty.itemID, itemProperty.masterIndex
+)
+;
+update itemProperty
+set propValue = "ESPPower"
+WHERE
+(itemProperty.itemID || '-' ||  itemProperty.masterIndex) IN
+(
+select (whichProp.itemID || '-' ||  whichProp.masterIndex)
+--## select itemProperty.itemID, itemProperty.masterIndex,  itemProperty.propValue, whichProp.propValue, whichMaster.masterName
+from itemProperty
+join itemPropertyMaster 
+on itemProperty.masterIndex = itemPropertyMaster.masterIndex
+join itemPropertyMaster as whichMaster 
+on substr(whichMaster.masterName,12,1) = substr(itemPropertyMaster.masterName,13,1)
+join itemProperty as whichProp 
+on whichMaster.masterIndex = whichProp.masterIndex and itemProperty.itemID = whichProp.itemID
+WHERE itemPropertyMaster.masterName like 'Option/Value%'
+and whichMaster.masterName like 'Option/Type%'
+and whichProp.propValue IN (
+"IncreaseCriticalStrikeDeal_Earth",
+"IncreaseCriticalStrikeChance_Earth",
+"IncreaseHitRate_Earth"
+)
+order by itemProperty.itemID, itemProperty.masterIndex
+)
+;
+update itemProperty
+set propValue = "AttackPower"
+WHERE
+(itemProperty.itemID || '-' ||  itemProperty.masterIndex) IN
+(
+select (whichProp.itemID || '-' ||  whichProp.masterIndex)
+--## select itemProperty.itemID, itemProperty.masterIndex,  itemProperty.propValue, whichProp.propValue, whichMaster.masterName
+from itemProperty
+join itemPropertyMaster 
+on itemProperty.masterIndex = itemPropertyMaster.masterIndex
+join itemPropertyMaster as whichMaster 
+on substr(whichMaster.masterName,12,1) = substr(itemPropertyMaster.masterName,13,1)
+join itemProperty as whichProp 
+on whichMaster.masterIndex = whichProp.masterIndex and itemProperty.itemID = whichProp.itemID
+WHERE itemPropertyMaster.masterName like 'Option/Value%'
+and whichMaster.masterName like 'Option/Type%'
+and whichProp.propValue IN (
+"IncreaseCriticalStrikeChance_Blunt",
+"IncreaseHitRate_Slashing"
 )
 order by itemProperty.itemID, itemProperty.masterIndex
 )
