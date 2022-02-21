@@ -339,7 +339,7 @@ public class TheLazyAndWrongWayToDoThis {
                     ")\n" +
                     "",
             "update rosterProperty\n" +
-                    "set rpValue = 'Revered'\n" +
+                    "set rpValue = 'Exalted'\n" +
                     "where masterIndex IN (\n" +
                     "\tSELECT masterIndex from rosterPropertyMaster\n" +
                     "\twhere masterName like 'Friendship/%/Rank'\n" +
